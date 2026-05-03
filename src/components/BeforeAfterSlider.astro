@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  before: ImageMetadata;
+  after: ImageMetadata;
+  beforeAlt: string;
+  afterAlt: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}
+
+const {
+  before,
+  after,
+  beforeAlt,
+  afterAlt,
+  beforeLabel = 'Before · raw composite',
+  afterLabel = 'After · full workflow',
+} = Astro.props;
+
+const aspectRatio = `${before.width} / ${before.height}`;
+---
+
+<div class="slider" id="slider" style={`aspect-ratio: ${aspectRatio};`}>
+  <Image class="before-img" src={before} alt={beforeAlt} loading="eager" decoding="async" />
+  <Image
+    class="after-img"
+    id="afterImg"
+    src={after}
+    alt={afterAlt}
+    loading="eager"
+    decoding="async"
+    style="clip-path: inset(0 0 0 50%);"
+  />
+  <div class="slider-handle" id="sliderHandle" style="left: 50%;">
+    <div class="slider-knob"></div>
+  </div>
+  <div class="slider-label before">{beforeLabel}</div>
+  <div class="slider-label after">{afterLabel}</div>
+</div>
+
+<script>
+  const slider = document.getElementById('slider');
+  const after = document.getElementById('afterImg');
+  const handle = document.getElementById('sliderHandle');
+  if (slider && after && handle) {
+    let dragging = false;
+    const setPos = (pct: number) => {
+      const clamped = Math.max(0, Math.min(100, pct));
+      (after as HTMLElement).style.clipPath = `inset(0 0 0 ${clamped}%)`;
+      handle.style.left = `${clamped}%`;
+    };
+    const xFromEvent = (e: MouseEvent | TouchEvent) => {
+      if ('touches' in e && e.touches.length) return e.touches[0].clientX;
+      return (e as MouseEvent).clientX;
+    };
+    const move = (e: MouseEvent | TouchEvent) => {
+      if (!dragging) return;
+      const r = slider.getBoundingClientRect();
+      setPos(((xFromEvent(e) - r.left) / r.width) * 100);
+      e.preventDefault();
+    };
+    const down = (e: MouseEvent | TouchEvent) => {
+      dragging = true;
+      move(e);
+    };
+    const up = () => {
+      dragging = false;
+    };
+    slider.addEventListener('mousedown', down);
+    slider.addEventListener('touchstart', down, { passive: false });
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('mouseup', up);
+    window.addEventListener('touchend', up);
+    setPos(50);
+  }
+</script>

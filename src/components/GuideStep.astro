@@ -1,0 +1,21 @@
+---
+interface Props {
+  id: string;
+  num: string;
+  kicker: string;
+  title: string;
+}
+
+const { id, num, kicker, title } = Astro.props;
+---
+
+<section class="step" id={id}>
+  <div class="step-head">
+    <div class="step-num">{num}</div>
+    <div class="step-title-block">
+      <div class="step-kicker">{kicker}</div>
+      <h2>{title}</h2>
+    </div>
+  </div>
+  <slot />
+</section>

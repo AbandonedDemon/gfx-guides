@@ -1,0 +1,25 @@
+---
+interface Mistake {
+  symptomHtml: string;
+  fixHtml: string;
+}
+
+interface Props {
+  label?: string;
+  items: Mistake[];
+}
+
+const { label = 'Common mistakes', items } = Astro.props;
+---
+
+<div class="mistakes">
+  <div class="mistakes-label">{label}</div>
+  {
+    items.map((m) => (
+      <div class="mistake">
+        <div class="mistake-symptom" set:html={m.symptomHtml} />
+        <div class="mistake-fix" set:html={m.fixHtml} />
+      </div>
+    ))
+  }
+</div>

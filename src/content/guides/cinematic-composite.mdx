@@ -1,0 +1,236 @@
+---
+number: "01"
+eyebrow: "Field Guide № 01 · Photoshop Workflow"
+titleHtml: "The <em>Cinematic</em> <br>Composite"
+lede:
+  - "Place a subject into a scene with mood, atmosphere, and the look of a real photograph. Works for illustration, 3D renders, character art, or stock cutouts — the technique is the same."
+  - "Six steps, in order. Follow them top to bottom."
+meta:
+  difficulty: "Intermediate"
+  time: "30–90 min"
+  tools: "Photoshop · Camera Raw"
+  output: "Phone-aspect crop"
+intro:
+  label: "Before you start"
+  headingHtml: "Three things to <em>keep in mind</em> as you work."
+  principles:
+    - num: "01"
+      title: "Lighting beats grading."
+      body: "If the edit looks \"off\" and you can't say why, it's almost always lighting — not color. Add another rim or shadow pass before reaching for more LUTs."
+    - num: "02"
+      title: "Add grain at the end."
+      body: "Grain on the merged final image — not the layers separately — is what makes the subject and photo look like one medium. Skip it and the cutout still feels foreign."
+    - num: "03"
+      title: "Never 100% on a LUT."
+      body: "A LUT at full strength is a filter. A LUT at 30–50%, stacked with manual curves, is a grade. Always lower the opacity."
+  glossaryTerms:
+    - clipping-mask
+    - multiply
+    - screen
+    - overlay-soft-light
+    - linear-dodge
+    - stamp-visible
+    - camera-raw-filter
+    - low-flow-brush
+    - alt-click-sample
+    - lut
+caseStudy:
+  kicker: "Case study · Drag to compare"
+  creditHtml: "Edit by <em>abd vibes</em>"
+  before: "../../assets/guides/cinematic-composite/before.png"
+  after: "../../assets/guides/cinematic-composite/after.png"
+  beforeAlt: "Source composite, before grading"
+  afterAlt: "Final cinematic edit"
+  captions:
+    - label: "Lighting"
+      body: "Flat midday cast replaced with directional warmth from the window. Warm rim on the left side, deep ambient shadow on the right. Same plate, different time of day."
+    - label: "Atmosphere"
+      body: "Heavy vignette, dust particles, bloom on the window. The room recedes into shadow and reads as much deeper than the source."
+    - label: "Creative beat"
+      body: "The glowing red heart isn't in the source — it's a Screen-mode brush pass with a soft glow. One small flourish."
+steps:
+  - id: step-1
+    num: "01"
+    title: "Source Match"
+    kicker: "Pre-comp"
+  - id: step-2
+    num: "02"
+    title: "Cutout & Soften"
+    kicker: "Masking"
+  - id: step-3
+    num: "03"
+    title: "Lighting Integration"
+    kicker: "Make-or-break"
+  - id: step-4
+    num: "04"
+    title: "Atmosphere"
+    kicker: "Bloom · Haze · Particles"
+  - id: step-5
+    num: "05"
+    title: "Color Grade"
+    kicker: "Curves · LUT"
+  - id: step-6
+    num: "06"
+    title: "Final Pass"
+    kicker: "Vignette · Grain · Crop"
+closing:
+  headingHtml: "That's the workflow."
+  bodyHtml:
+    - "Run through it once and the second pass takes half the time. Run through it five times and you'll start skipping ahead — knowing which steps your image needs more of and which it doesn't. Most edits don't need every layer in the lighting stack; some need three rim passes instead of one. <strong>The order matters more than the count.</strong>"
+    - "If something feels wrong and you can't name it: <strong>go back to step 3</strong>. It's almost always lighting."
+footer:
+  label: "Field Guide № 01 · v2"
+  tools: "Photoshop · Camera Raw"
+publishedAt: "2026-05-03"
+---
+
+import GuideStep from '../../components/GuideStep.astro';
+import Goal from '../../components/Goal.astro';
+import Why from '../../components/Why.astro';
+import Mistakes from '../../components/Mistakes.astro';
+import Shot from '../../components/Shot.astro';
+import StepsList from '../../components/StepsList.astro';
+import step1 from '../../assets/guides/cinematic-composite/steps/1.jpg';
+import step2 from '../../assets/guides/cinematic-composite/steps/2.jpg';
+import step3 from '../../assets/guides/cinematic-composite/steps/3.jpg';
+import step4 from '../../assets/guides/cinematic-composite/steps/4.jpg';
+import step5 from '../../assets/guides/cinematic-composite/steps/5.jpg';
+import step6 from '../../assets/guides/cinematic-composite/steps/6.jpg';
+import step7 from '../../assets/guides/cinematic-composite/steps/7.jpg';
+import step8 from '../../assets/guides/cinematic-composite/steps/8.jpg';
+import step9 from '../../assets/guides/cinematic-composite/steps/9.jpg';
+import step10 from '../../assets/guides/cinematic-composite/steps/10.jpg';
+import step11 from '../../assets/guides/cinematic-composite/steps/11.jpg';
+import step12 from '../../assets/guides/cinematic-composite/steps/12.jpg';
+import step13 from '../../assets/guides/cinematic-composite/steps/13.jpg';
+import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
+
+<GuideStep id="step-1" num="01" kicker="Pre-composite · Highest leverage step" title="Source match.">
+  <Goal>Pick a subject whose lighting already matches your scene before you import it.</Goal>
+
+  <StepsList>
+    <li><strong>Look at your scene plate.</strong> Note three things: which side the light comes from, the color temperature (warm or cool), and how dark the shadows are.</li>
+    <li><strong>Find subject art with the same setup.</strong> Same light direction. Same warm/cool feel. Same contrast level. If your scene is backlit, find subject art that's already backlit.</li>
+    <li><strong>If the match is wrong, find a different subject.</strong> Don't try to fix it later. No grade saves bad lighting.</li>
+  </StepsList>
+
+  <Shot src={step1} alt="Step illustration 1" />
+
+  <Why><strong>Lighting that's already in the source</strong> is permanent. Lighting you paint on top is approximate. Start with as much "real" lighting as you can.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Subject is lit from camera-left, scene from camera-right", fixHtml: "<strong>Flip the subject horizontally</strong> — Edit → Transform → Flip Horizontal. Costs nothing, fixes everything." },
+    { symptomHtml: "Subject is high-contrast, scene is hazy and low-contrast", fixHtml: "<strong>Pick a different subject.</strong> Sourcing again is faster than trying to flatten the contrast convincingly." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="step-2" num="02" kicker="Masking · Edges" title="Cutout, then soften.">
+  <Goal>Get a clean cutout of the subject, then blur the mask slightly so the edge doesn't look pasted on.</Goal>
+
+  <StepsList>
+    <li><strong>Pen tool around the subject.</strong> Close the path. Right-click → Make Selection. Feather: <code>0.5px</code>.</li>
+    <li><strong>Add a layer mask.</strong> Click the mask icon at the bottom of the Layers panel (rectangle with a circle in it).</li>
+    <li><strong>Open Select → Select and Mask.</strong> Set <code>View Mode</code> to <em>On Black</em> so you can see fringing.</li>
+    <li><strong>Bump Smart Radius</strong> until hair, fur, or soft edges look clean (usually 3–8px). Click <em>OK</em>.</li>
+    <li><strong>Blur the mask.</strong> Click the layer mask thumbnail. Filter → Blur → Gaussian Blur. Radius: <code>0.4px</code>. Click OK.</li>
+  </StepsList>
+
+  <Shot src={step2} alt="Step illustration 2" />
+  <Shot src={step3} alt="Step illustration 3" />
+
+  <Why><strong>Digital art has razor-sharp edges. Photographs don't.</strong> The 0.4px mask blur softens the subject's outline just enough to match the photo's natural edge softness. It's the difference between "pasted on" and "in the scene."</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "White halo around the subject", fixHtml: "<strong>Layer → Matting → Defringe.</strong> Width: 1–2px. Removes the leftover background pixels." },
+    { symptomHtml: "Hair looks chunky or has gaps", fixHtml: "<strong>Go back to Select and Mask.</strong> Bump Smart Radius higher (try 8–10px) and paint over the hair with the Refine Edge brush." },
+    { symptomHtml: "Subject still looks like a sticker after everything", fixHtml: "<strong>You skipped the 0.4px mask blur.</strong> Click the mask thumbnail, run Gaussian Blur. This is the single most-skipped step." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="step-3" num="03" kicker="Lighting · The make-or-break step" title="Light the subject.">
+  <Goal>Paint the scene's lighting onto the subject — bright side, dark side, and ground contact — so they look lit by the same source.</Goal>
+
+  <StepsList>
+    <li><strong>Set up a clipped layer above the subject.</strong> New blank layer → right-click → <em>Create Clipping Mask</em>. Pick a soft round brush, hardness 0%, flow 10–15%. This layer will only show up where the subject is.</li>
+    <li><strong>Paint the bright side.</strong> Set blend mode to <code>Screen</code>. <kbd>Alt</kbd>-click the brightest light in the scene to sample its color. Paint a thin rim along the side of the subject facing the light. Add a second clipped layer set to <code>Soft Light</code> for the warm color spill across that same side.</li>
+    <li><strong>Paint the dark side and the ground.</strong> Add a clipped <code>Multiply</code> layer. Sample a dark ambient color from the scene's shadows and paint the side facing away from the light. Then make one more layer <em>below</em> the subject (not clipped), Multiply, and paint a small dark shadow where the feet meet the floor.</li>
+  </StepsList>
+
+  <Shot src={step4} alt="Step illustration 4" />
+  <Shot src={step5} alt="Step illustration 5" />
+  <Shot src={step6} alt="Step illustration 6" />
+
+  <Why><strong>Anything in a real photo is lit by the room it's in</strong> — light bounces off walls and back onto the subject. Your subject art was lit by a <em>different</em> room. These five layers fake the new room's lighting and that's what makes the comp believable.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Rim light looks like a glowing outline", fixHtml: "<strong>Drop the layer opacity</strong> to 30–50%. It should be <em>almost</em> too subtle. Glowing = wrong." },
+    { symptomHtml: "Subject still feels disconnected from the floor", fixHtml: "<strong>Push the contact shadow harder.</strong> Make it darker, tighter to where the feet meet the ground. Without it, they float." },
+    { symptomHtml: "Colors clash between subject and scene", fixHtml: "<strong>Push the color spill layer up</strong> to 70–80% opacity. Spill is the layer that \"marries\" the two." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="step-4" num="04" kicker="Atmosphere · Sells the camera" title="Add bloom, haze, and dust.">
+  <Goal>Make the comp look like it was shot through a real lens, in a real room with real air in it.</Goal>
+
+  <StepsList>
+    <li><strong>Add bloom around the highlights.</strong> Stamp visible (<kbd>Ctrl/Cmd + Shift + Alt + E</kbd>). Duplicate that stamp. Filter → Blur → Gaussian Blur, radius <code>40px</code>. Set blend mode to <code>Screen</code>, opacity 20–30%.</li>
+    <li><strong>Add haze between subject and background.</strong> New layer below the subject. Soft brush, flow 10%, sample a color from the scene's main light. Paint a thin wash across the room behind the subject to push the background back.</li>
+    <li><strong>Drop dust and light leaks on top.</strong> Add a particle brush layer (or a downloaded dust overlay PNG) set to <code>Screen</code>. Then add an optional warm gradient or light leak overlay in a corner, also <code>Screen</code>, opacity 50–70%.</li>
+  </StepsList>
+
+  <Shot src={step7} alt="Step illustration 7" />
+  <Shot src={step8} alt="Step illustration 8" />
+  <Shot src={step9} alt="Step illustration 9" />
+
+  <Why><strong>Phone cameras and lenses produce these effects automatically</strong> — bloom around bright lights, haze in deep rooms, dust in the air, leaks on cheap glass. Adding them deliberately is what makes a clean composite read as a casual snapshot.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Whole image looks blurry and washed out", fixHtml: "<strong>Bloom opacity is too high.</strong> Drop it to 15–20%. Bloom should be felt, not seen." },
+    { symptomHtml: "Dust particles look fake or distracting", fixHtml: "<strong>Lower the layer opacity</strong> to 30–40%, or mask out the particles in front of the subject's face." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="step-5" num="05" kicker="Color grade · The signature" title="Grade the whole image.">
+  <Goal>Apply the cinematic look — lifted blacks, desaturated mids, warm-cool split — using adjustment layers above everything.</Goal>
+
+  <StepsList>
+    <li><strong>Lift blacks and split-tone with Curves.</strong> Layer → New Adjustment Layer → <code>Curves</code>. On the master (RGB) channel, drag the bottom-left point up 10–15%. Then switch to the <code>Blue</code> channel dropdown and drag bottom-left up to push shadows teal. Switch to <code>Red</code> channel and drag the top-right point slightly left for warm highlights.</li>
+    <li><strong>Drop saturation.</strong> Layer → New Adjustment Layer → <code>Hue/Saturation</code>. Master saturation <code>-15 to -25</code>. Image goes filmic instead of digital.</li>
+    <li><strong>Apply a LUT at reduced opacity.</strong> Layer → New Adjustment Layer → <code>Color Lookup</code>. Pick a teal-and-orange or filmic preset. Drop layer opacity to 30–50% — never leave it at 100%.</li>
+  </StepsList>
+
+  <Shot src={step10} alt="Step illustration 10" />
+  <Shot src={step11} alt="Step illustration 11" />
+  <Shot src={step12} alt="Step illustration 12" />
+
+  <Why><strong>Real film and old camera sensors couldn't hit pure black or saturate fully.</strong> Lifting blacks, splitting tone, and dropping saturation re-creates that organic look. The brain reads it as "real photo" instead of "digital file."</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Image looks gray and lifeless", fixHtml: "<strong>You lifted blacks too far.</strong> Drag the bottom-left point back down. Aim for \"milky shadows\", not \"no shadows.\"" },
+    { symptomHtml: "Skin tones look green or sickly", fixHtml: "<strong>The blue channel lift is too strong.</strong> Pull it back, or open Hue/Saturation, target \"Reds\" only, and bump them slightly." },
+    { symptomHtml: "Looks like a generic Instagram filter", fixHtml: "<strong>Your LUT is at 100%.</strong> Drop it to 30–40%. LUTs are seasoning, not the meal." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="step-6" num="06" kicker="Final pass · Out the door" title="Vignette, grain, crop.">
+  <Goal>Add the last details that sell it as a phone photo, then crop and export.</Goal>
+
+  <StepsList>
+    <li><strong>Vignette.</strong> Layer → New Adjustment Layer → <code>Curves</code>. Drag the middle of the curve down to darken everything. Then click the layer mask, fill it with black (<kbd>Ctrl/Cmd + I</kbd>), and paint white with a huge soft brush <em>only at the corners</em>. Edges darken, center stays bright.</li>
+    <li><strong>Stamp visible again.</strong> <kbd>Ctrl/Cmd + Shift + Alt + E</kbd>.</li>
+    <li><strong>Add grain.</strong> Filter → Camera Raw Filter. Open the <em>Effects</em> tab. Grain settings: Amount <code>20</code>, Size <code>25</code>, Roughness <code>50</code>. Click OK.</li>
+    <li><strong>Crop.</strong> Crop tool, set ratio to <code>3:4</code> or <code>9:16</code>. Tighten the frame around the subject.</li>
+    <li><strong>Export.</strong> File → Export → Export As. JPG, quality 80–90, sRGB.</li>
+  </StepsList>
+
+  <Shot src={step13} alt="Step illustration 13" />
+  <Shot src={step14} alt="Step illustration 14" />
+
+  <Why><strong>Grain is the single thing that ties subject and photo together.</strong> Both have grain now, and it's the same grain. The eye stops seeing two layers and starts seeing one image.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Vignette looks like a black ring around the photo", fixHtml: "<strong>Soften the mask.</strong> Use a much bigger, softer brush on the mask. The transition should be invisible." },
+    { symptomHtml: "Grain looks chunky or pixelated", fixHtml: "<strong>Drop Size to ~15</strong> and bump Amount slightly. Big grain reads as digital noise; fine grain reads as film." },
+    { symptomHtml: "Image looks great at 100% but flat at fit-to-screen", fixHtml: "<strong>Push contrast and vignette harder.</strong> These edits are made to be viewed at phone size — design for that." }
+  ]} />
+</GuideStep>

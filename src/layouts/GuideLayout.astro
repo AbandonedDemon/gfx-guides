@@ -1,0 +1,99 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import GuideHero from '../components/GuideHero.astro';
+import PrincipleGrid from '../components/PrincipleGrid.astro';
+import Glossary from '../components/Glossary.astro';
+import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
+
+interface Props {
+  guide: CollectionEntry<'guides'>;
+}
+
+const { guide } = Astro.props;
+const data = guide.data;
+const steps = data.steps;
+const description = data.lede[0];
+---
+
+<BaseLayout title={data.titleHtml.replace(/<[^>]+>/g, '')} description={description}>
+  <div class="wrap">
+    <GuideHero
+      eyebrow={data.eyebrow}
+      titleHtml={data.titleHtml}
+      lede={data.lede}
+      meta={data.meta}
+    />
+
+    <section class="intro">
+      <div class="intro-label">{data.intro.label}</div>
+      <h3 set:html={data.intro.headingHtml}></h3>
+
+      <PrincipleGrid principles={data.intro.principles} />
+
+      {data.intro.glossaryTerms.length > 0 && <Glossary termIds={data.intro.glossaryTerms} />}
+    </section>
+
+    <section class="case">
+      <div class="case-head">
+        <div class="case-kicker">{data.caseStudy.kicker}</div>
+        <div class="case-credit" set:html={data.caseStudy.creditHtml}></div>
+      </div>
+      <BeforeAfterSlider
+        before={data.caseStudy.before}
+        after={data.caseStudy.after}
+        beforeAlt={data.caseStudy.beforeAlt}
+        afterAlt={data.caseStudy.afterAlt}
+      />
+      <div class="case-caption">
+        {
+          data.caseStudy.captions.map((c) => (
+            <div>
+              <strong>{c.label}</strong>
+              {c.body}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <nav class="toc">
+      <div class="toc-grid">
+        {
+          steps.map((s) => (
+            <button type="button" class="toc-item" data-target={s.id}>
+              <span class="toc-num">{s.num}</span>
+              <span class="toc-title">{s.title}</span>
+              <span class="toc-tag">{s.kicker}</span>
+            </button>
+          ))
+        }
+      </div>
+    </nav>
+
+    <slot />
+
+    <section class="closing">
+      <h3 set:html={data.closing.headingHtml}></h3>
+      {data.closing.bodyHtml.map((p) => <p set:html={p}></p>)}
+    </section>
+
+    <footer>
+      <span>{data.footer.label}</span>
+      <span>{data.footer.tools}</span>
+      <span>End of file</span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.toc-item').forEach((b) => {
+    b.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = b.getAttribute('data-target');
+      if (!target) return;
+      const el = document.getElementById(target);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>

@@ -1,0 +1,27 @@
+---
+import glossary from '../data/glossary.json';
+
+interface Props {
+  termIds: string[];
+  label?: string;
+}
+
+const { termIds, label = 'Glossary · terms used in this guide' } = Astro.props;
+
+type GlossaryEntry = { term: string; definition: string };
+const entries: GlossaryEntry[] = termIds
+  .map((id) => (glossary as Record<string, GlossaryEntry>)[id])
+  .filter((entry): entry is GlossaryEntry => Boolean(entry));
+---
+
+<div class="glossary-label">{label}</div>
+<div class="glossary">
+  {
+    entries.map((e) => (
+      <div class="gloss-row">
+        <div class="gloss-term">{e.term}</div>
+        <div class="gloss-def" set:html={e.definition} />
+      </div>
+    ))
+  }
+</div>

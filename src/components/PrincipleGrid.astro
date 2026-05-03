@@ -1,0 +1,25 @@
+---
+interface Principle {
+  num: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  principles: Principle[];
+}
+
+const { principles } = Astro.props;
+---
+
+<div class="principles-grid">
+  {
+    principles.map((p) => (
+      <div class="principle">
+        <div class="principle-num">→ {p.num}</div>
+        <div class="principle-title">{p.title}</div>
+        <div class="principle-body">{p.body}</div>
+      </div>
+    ))
+  }
+</div>
