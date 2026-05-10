@@ -5,6 +5,7 @@ import GuideHero from '../components/GuideHero.astro';
 import PrincipleGrid from '../components/PrincipleGrid.astro';
 import Glossary from '../components/Glossary.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
+import StickyToc from '../components/StickyToc.astro';
 
 interface Props {
   guide: CollectionEntry<'guides'>;
@@ -14,10 +15,14 @@ const { guide } = Astro.props;
 const data = guide.data;
 const steps = data.steps;
 const description = data.lede[0];
+
+const baseUrl = import.meta.env.BASE_URL;
+const catalogHref = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 ---
 
 <BaseLayout title={data.titleHtml.replace(/<[^>]+>/g, '')} description={description}>
   <div class="wrap">
+    <a class="back-link" href={catalogHref}>← All guides</a>
     <GuideHero
       eyebrow={data.eyebrow}
       titleHtml={data.titleHtml}
@@ -50,7 +55,7 @@ const description = data.lede[0];
           data.caseStudy.captions.map((c) => (
             <div>
               <strong>{c.label}</strong>
-              {c.body}
+              <span set:html={c.body} />
             </div>
           ))
         }
@@ -71,6 +76,8 @@ const description = data.lede[0];
       </div>
     </nav>
 
+    <StickyToc steps={steps} />
+
     <slot />
 
     <section class="closing">
@@ -85,6 +92,25 @@ const description = data.lede[0];
     </footer>
   </div>
 </BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin: 32px 0 -40px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .back-link:hover,
+  .back-link:focus-visible {
+    color: var(--amber);
+    outline: none;
+  }
+</style>
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('.toc-item').forEach((b) => {

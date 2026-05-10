@@ -38,5 +38,17 @@
   "lut": {
     "term": "LUT",
     "definition": "A preset color table. Apply via Layer → New Adjustment Layer → Color Lookup. Always drop opacity to 30–50%."
+  },
+  "smart-object": {
+    "term": "Smart Object",
+    "definition": "A wrapper layer that protects the original pixels. Right-click the layer → <em>Convert to Smart Object</em>. Filters applied to a Smart Object stay editable — double-click the filter name in the Layers panel to reopen and tweak — instead of being baked into the pixels."
+  },
+  "s-curve": {
+    "term": "S-curve",
+    "definition": "A subtle S-shaped Curves adjustment on master RGB. Drop one anchor in the middle of the diagonal, then drag the lower portion <em>down</em> a touch and the upper portion <em>up</em> a touch. The line bends into a soft S — that's the name. Adds contrast without crushing detail."
+  },
+  "vibrance": {
+    "term": "Vibrance",
+    "definition": "A saturation control that boosts low-saturation pixels more than already-saturated ones, with built-in protection for skin tones. Use Vibrance when you want a <em>global</em> lift; use Hue/Saturation with a specific range when you want surgical control. Master saturation in Hue/Saturation is rarely the right tool."
   }
 }

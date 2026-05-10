@@ -18,7 +18,7 @@ const { principles } = Astro.props;
       <div class="principle">
         <div class="principle-num">→ {p.num}</div>
         <div class="principle-title">{p.title}</div>
-        <div class="principle-body">{p.body}</div>
+        <div class="principle-body" set:html={p.body} />
       </div>
     ))
   }

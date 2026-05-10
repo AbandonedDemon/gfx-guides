@@ -79,7 +79,7 @@ closing:
     - "Run through it once and the second pass takes half the time. Run through it five times and you'll start skipping ahead — knowing which steps your image needs more of and which it doesn't. Most edits don't need every layer in the lighting stack; some need three rim passes instead of one. <strong>The order matters more than the count.</strong>"
     - "If something feels wrong and you can't name it: <strong>go back to step 3</strong>. It's almost always lighting."
 footer:
-  label: "Field Guide № 01 · v2"
+  label: "Field Guide № 01"
   tools: "Photoshop · Camera Raw"
 publishedAt: "2026-05-03"
 ---
@@ -114,7 +114,7 @@ import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
     <li><strong>If the match is wrong, find a different subject.</strong> Don't try to fix it later. No grade saves bad lighting.</li>
   </StepsList>
 
-  <Shot src={step1} alt="Step illustration 1" />
+  <Shot src={step1} alt="Anime character composited into a kitchen scene, with arrows marking the window's lighting direction and a note that the character's tone doesn't yet match the warm interior." />
 
   <Why><strong>Lighting that's already in the source</strong> is permanent. Lighting you paint on top is approximate. Start with as much "real" lighting as you can.</Why>
 
@@ -135,8 +135,8 @@ import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
     <li><strong>Blur the mask.</strong> Click the layer mask thumbnail. Filter → Blur → Gaussian Blur. Radius: <code>0.4px</code>. Click OK.</li>
   </StepsList>
 
-  <Shot src={step2} alt="Step illustration 2" />
-  <Shot src={step3} alt="Step illustration 3" />
+  <Shot src={step2} alt="Photoshop's Select and Mask dialog with Smart Radius at 5px, Smooth at 3, and Feather at 6.2px to refine the cutout edge." />
+  <Shot src={step3} alt="Layers panel showing the subject layer with mask, a duplicate copy, and a Color Fill background layer after the initial cutout." />
 
   <Why><strong>Digital art has razor-sharp edges. Photographs don't.</strong> The 0.4px mask blur softens the subject's outline just enough to match the photo's natural edge softness. It's the difference between "pasted on" and "in the scene."</Why>
 
@@ -156,9 +156,9 @@ import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
     <li><strong>Paint the dark side and the ground.</strong> Add a clipped <code>Multiply</code> layer. Sample a dark ambient color from the scene's shadows and paint the side facing away from the light. Then make one more layer <em>below</em> the subject (not clipped), Multiply, and paint a small dark shadow where the feet meet the floor.</li>
   </StepsList>
 
-  <Shot src={step4} alt="Step illustration 4" />
-  <Shot src={step5} alt="Step illustration 5" />
-  <Shot src={step6} alt="Step illustration 6" />
+  <Shot src={step4} alt="A new clipped layer (Layer 9) added above the subject, with a low-flow soft brush ready to paint window light around it." />
+  <Shot src={step5} alt="Lighting layers set to Screen and Soft Light blend modes, with arrows showing where rim light and color spill have been painted on the subject's bright side." />
+  <Shot src={step6} alt="Shadow layers set to Multiply mode, with optional Curves adjustment layers stacked on top to fine-tune shadow density." />
 
   <Why><strong>Anything in a real photo is lit by the room it's in</strong> — light bounces off walls and back onto the subject. Your subject art was lit by a <em>different</em> room. These five layers fake the new room's lighting and that's what makes the comp believable.</Why>
 
@@ -178,9 +178,9 @@ import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
     <li><strong>Drop dust and light leaks on top.</strong> Add a particle brush layer (or a downloaded dust overlay PNG) set to <code>Screen</code>. Then add an optional warm gradient or light leak overlay in a corner, also <code>Screen</code>, opacity 50–70%.</li>
   </StepsList>
 
-  <Shot src={step7} alt="Step illustration 7" />
-  <Shot src={step8} alt="Step illustration 8" />
-  <Shot src={step9} alt="Step illustration 9" />
+  <Shot src={step7} alt="A stamped copy of the composite (Layer 8 copy) duplicated and set to Screen at 25% opacity to create soft bloom around highlights." />
+  <Shot src={step8} alt="Painting a thin wash of the scene's warm light color behind the subject as atmospheric haze." />
+  <Shot src={step9} alt="Atmosphere stack in the Layers panel: dust particles, light leak overlay, and a Curves layer used to tone down the leak." />
 
   <Why><strong>Phone cameras and lenses produce these effects automatically</strong> — bloom around bright lights, haze in deep rooms, dust in the air, leaks on cheap glass. Adding them deliberately is what makes a clean composite read as a casual snapshot.</Why>
 
@@ -199,9 +199,9 @@ import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
     <li><strong>Apply a LUT at reduced opacity.</strong> Layer → New Adjustment Layer → <code>Color Lookup</code>. Pick a teal-and-orange or filmic preset. Drop layer opacity to 30–50% — never leave it at 100%.</li>
   </StepsList>
 
-  <Shot src={step10} alt="Step illustration 10" />
-  <Shot src={step11} alt="Step illustration 11" />
-  <Shot src={step12} alt="Step illustration 12" />
+  <Shot src={step10} alt="Photoshop's Curves dialog adjusted with Input 161 / Output 45, shaping the final contrast and grade." />
+  <Shot src={step11} alt="Hue/Saturation panel with Hue at -5 and Saturation at -21, dropping overall saturation for a filmic look." />
+  <Shot src={step12} alt="Color Lookup adjustment with the Kodak 5205 Fuji 3510 LUT loaded at 55% opacity." />
 
   <Why><strong>Real film and old camera sensors couldn't hit pure black or saturate fully.</strong> Lifting blacks, splitting tone, and dropping saturation re-creates that organic look. The brain reads it as "real photo" instead of "digital file."</Why>
 
@@ -223,8 +223,8 @@ import step14 from '../../assets/guides/cinematic-composite/steps/14.jpg';
     <li><strong>Export.</strong> File → Export → Export As. JPG, quality 80–90, sRGB.</li>
   </StepsList>
 
-  <Shot src={step13} alt="Step illustration 13" />
-  <Shot src={step14} alt="Step illustration 14" />
+  <Shot src={step13} alt="Camera Raw Effects panel with Grain at Amount 20, Size 25, Roughness 50 — the final grain pass." />
+  <Shot src={step14} alt="Photoshop's Crop tool with a 4:5 ratio set, preparing the phone-aspect crop for export." />
 
   <Why><strong>Grain is the single thing that ties subject and photo together.</strong> Both have grain now, and it's the same grain. The eye stops seeing two layers and starts seeing one image.</Why>
 

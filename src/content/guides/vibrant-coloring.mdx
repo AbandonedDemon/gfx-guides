@@ -1,0 +1,218 @@
+---
+number: "02"
+eyebrow: "Field Guide № 02 · Photoshop Workflow"
+titleHtml: "The <em>Vibrant</em> <br>Coloring Pass"
+lede:
+  - "A layered coloring workflow for dreamy, high-chroma edits — the kind that hold their punch on a phone screen but stay readable as <em>images</em>, not filters."
+  - "Five passes, applied in order — but unlike compositing, you'll loop back through them. Coloring is iterative, not sequential. <strong>Vibrant ≠ saturated.</strong> The rest of this guide is one long argument for that idea."
+meta:
+  difficulty: "Intermediate"
+  time: "30–60 min"
+  tools: "Photoshop · Camera Raw"
+  output: "sRGB · 8-bit JPEG"
+intro:
+  label: "Before you start"
+  headingHtml: "Three things to <em>internalize.</em>"
+  principles:
+    - num: "01"
+      title: "Vibrant ≠ saturated."
+      body: "Vibrant is high chroma in <em>specific</em> zones with desaturated supporting areas. Pure global saturation is the amateur tell. Push at the edges, protect the center — skin and whites stay near-neutral so the loud colors read as deliberate."
+    - num: "02"
+      title: "Build palettes, don't apply filters."
+      body: "A custom 3–5 color target picked before you start beats every preset, LUT, or \"vibrant\" action ever made. The palette is your stop condition — without it, you'll keep tweaking past the point of being good."
+    - num: "03"
+      title: "Toggle constantly."
+      body: "The eye adapts within 30 seconds and stops seeing what you just did. Alt/Option-click the bottom layer's eyeball to A/B against the source every few minutes. The grade you can't see anymore is usually the one that's gone too far."
+  glossaryTerms:
+    - smart-object
+    - s-curve
+    - vibrance
+    - stamp-visible
+    - camera-raw-filter
+    - alt-click-sample
+    - multiply
+    - screen
+    - linear-dodge
+    - lut
+caseStudy:
+  kicker: "Case study · Drag to compare"
+  creditHtml: "Edit by <em>abd vibes</em> · \"Lynae\""
+  before: "../../assets/guides/vibrant-coloring/before.png"
+  after: "../../assets/guides/vibrant-coloring/after.png"
+  beforeAlt: "Source plate before the coloring pass"
+  afterAlt: "Final vibrant grade"
+  captions:
+    - label: "Palette"
+      body: "Two opposing colors anchor the image — <em>magenta and cyan</em> sit roughly across from each other on the color wheel — with warm coral and gold accents tying the figure to the background. Three colors doing the work; a half-dozen others playing supporting roles. (Color theorists call this a \"split-complementary\" palette.)"
+    - label: "Rim lighting"
+      body: "Cyan rim on the right matching the cyan bar, magenta rim on the left matching the pink halo. The figure isn't <em>sitting on</em> the background — it's <em>lit by</em> it. Pass 04's signature move."
+    - label: "Preserved neutrals"
+      body: "The shirt stays close to white. The skin stays close to neutral. Despite the screaming chroma everywhere else, the eye finds anchors — which is exactly why the saturation reads as <em>deliberate</em>, not as a filter."
+steps:
+  - id: pass-1
+    num: "01"
+    title: "Foundation"
+    kicker: "Setup, palette, reference"
+  - id: pass-2
+    num: "02"
+    title: "Tonal Anchor"
+    kicker: "Black point, white point, contrast"
+  - id: pass-3
+    num: "03"
+    title: "The Color Pass"
+    kicker: "The meat — Curves, Selective, Hue/Sat"
+  - id: pass-4
+    num: "04"
+    title: "Atmosphere & Light"
+    kicker: "Rim, bloom, leaks, sparkle"
+  - id: pass-5
+    num: "05"
+    title: "Finishing"
+    kicker: "Camera Raw, grain, export"
+closing:
+  headingHtml: "Coloring is the one pass you'll <em>loop.</em>"
+  bodyHtml:
+    - "These five passes work in order, but unlike compositing they aren't sequential. You'll finish Pass 03 and jump back to Pass 02 to widen the histogram for the new Curves moves. Pass 05 will send you back to Pass 03 to bring a hue down."
+    - "<strong>That looping is the work.</strong>"
+    - "A guide that pretends otherwise is selling preset packs."
+    - "When you can't decide whether you've gone too far, default to the invariant: <strong>vibrant ≠ saturated</strong>. Skin and whites stay near-neutral. The loud colors live at the edges and the accents. If the image stops looking like an image and starts looking like a filter, that's where to back off."
+footer:
+  label: "Field Guide № 02"
+  tools: "Photoshop · Camera Raw"
+publishedAt: "2026-05-06"
+---
+
+import GuideStep from '../../components/GuideStep.astro';
+import Goal from '../../components/Goal.astro';
+import Why from '../../components/Why.astro';
+import Mistakes from '../../components/Mistakes.astro';
+import Shot from '../../components/Shot.astro';
+import StepsList from '../../components/StepsList.astro';
+import step1 from '../../assets/guides/vibrant-coloring/steps/01.jpg';
+import step2 from '../../assets/guides/vibrant-coloring/steps/02.jpg';
+import step3 from '../../assets/guides/vibrant-coloring/steps/03.jpg';
+import step4 from '../../assets/guides/vibrant-coloring/steps/04.jpg';
+import step5 from '../../assets/guides/vibrant-coloring/steps/05.jpg';
+import step6 from '../../assets/guides/vibrant-coloring/steps/06.jpg';
+import step7 from '../../assets/guides/vibrant-coloring/steps/07.jpg';
+import step8 from '../../assets/guides/vibrant-coloring/steps/08.jpg';
+import step9 from '../../assets/guides/vibrant-coloring/steps/09.jpg';
+import step10 from '../../assets/guides/vibrant-coloring/steps/10.jpg';
+import step11 from '../../assets/guides/vibrant-coloring/steps/11.jpg';
+import step12 from '../../assets/guides/vibrant-coloring/steps/12.jpg';
+import step13 from '../../assets/guides/vibrant-coloring/steps/13.jpg';
+import step14 from '../../assets/guides/vibrant-coloring/steps/14.jpg';
+import step15 from '../../assets/guides/vibrant-coloring/steps/15.jpg';
+import step16 from '../../assets/guides/vibrant-coloring/steps/16.jpg';
+
+<GuideStep id="pass-1" num="01" kicker="Foundation · ~10 min · The non-pass pass" title="Before you touch a slider.">
+  <Goal>Establish the document, identify what's already in the image, and commit to a 3–5 color target palette before any layer goes down.</Goal>
+
+  <StepsList>
+    <li><strong>Mode &amp; color space.</strong> Image → Mode → <code>16 Bits/Channel</code> for safety on heavy grades. <em>Bit depth = how many color values per pixel; 16-bit gives you 256× more values than 8-bit, which prevents banding when you stack heavy adjustments.</em> Then Edit → Color Settings → Working RGB <code>sRGB IEC61966-2.1</code> — the long-named option is the right one for anything posted online.</li>
+    <li><strong>Convert source to Smart Object.</strong> Right-click the layer → <code>Convert to Smart Object</code>. Lets you re-edit Camera Raw in Pass 05 without baking anything in.</li>
+    <li><strong>Read the source.</strong> Eyedropper across the image. What hues already exist? What's the dominant temperature? What's the brightest point, the darkest? Five seconds of looking saves an hour of fixing.</li>
+    <li><strong>Pick a target palette.</strong> 3–5 colors. Pull from a reference image, a movie still, an album cover. Lock the palette before you grade — you'll know when to stop pushing because you'll have hit the target.</li>
+  </StepsList>
+
+  <Shot src={step1} alt="Photoshop Mode menu set to 16 Bits/Channel and Color Settings dialog with sRGB working space" />
+  <Shot src={step2} alt="Reference image alongside a 3–5 color target palette" />
+
+  <Why><strong>Decisions made before any layer goes down compound.</strong> Skip the palette and you'll spend the next hour wandering toward a look you can't articulate. The non-pass pass is where the rest of the work becomes <em>finishable</em>.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Banding shows up in skies or smooth gradients halfway through the grade", fixHtml: "<strong>You're working in 8-bit.</strong> Image → Mode → 16 Bits/Channel before any adjustment layer goes down. The extra precision absorbs heavy stacks without breaking up." },
+    { symptomHtml: "Forty minutes in and you can't decide what the image should look like", fixHtml: "<strong>You skipped the palette.</strong> Stop. Pull 3–5 colors from a reference (movie still, album cover, photo). Lock them. Resume — now you have a stop condition." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="pass-2" num="02" kicker="Tonal Anchor · ~5 min · Monochrome thinking" title="Fix the tonality first.">
+  <Goal>Establish black point, white point, and overall contrast on the master RGB curve — before any individual channel work.</Goal>
+
+  <StepsList>
+    <li><strong>Levels for the anchors.</strong> Layer → New Adjustment Layer → <code>Levels</code>. Drag the black slider in until the histogram starts. Drag the white slider in until the histogram ends. You're snapping the tonal range to its actual edges.</li>
+    <li><strong>Curves for contrast shape.</strong> Layer → New Adjustment Layer → <code>Curves</code>. Master RGB channel only. Apply a subtle <em>S-curve</em>: click once in the middle of the diagonal to drop an anchor, then drag the lower portion <em>down</em> a touch and the upper portion <em>up</em> a touch. Don't go heavy — you'll add more in Pass 03. <em>Optional refinement:</em> set the Curves layer's blend mode to <code>Luminosity</code> so the contrast move doesn't quietly pump saturation as a side effect. Skip the Luminosity move if you actually want that punch — decide deliberately, not by accident.</li>
+    <li><strong>Sanity check.</strong> Hold <kbd>Alt</kbd>/<kbd>Option</kbd> and click the bottom layer's eyeball to A/B against the source. Image should feel <em>cleaner</em>, not <em>different</em>. If it already looks "graded," you went too far — back off.</li>
+  </StepsList>
+
+  <Shot src={step3} alt="Levels dialog with the histogram and black/white sliders pulled to the edges of the data" />
+  <Shot src={step4} alt="Curves panel showing a subtle master-RGB S-curve" />
+
+  <Why><strong>Color sits on top of contrast.</strong> Anchor the tonality first and Pass 03 paints onto a stable canvas; skip it and every Curves move in the color pass fights muddy midtones. Tonal anchor before color also stops you from chasing saturation that's actually a contrast problem.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Image already looks \"graded\" after Levels and Curves", fixHtml: "<strong>You went too far.</strong> Pull the S-curve back toward neutral. This pass is meant to feel <em>cleaner</em>, not <em>different</em>." },
+    { symptomHtml: "Skin looks washed out or oversaturated after the contrast move", fixHtml: "<strong>Set the Curves layer to <code>Luminosity</code> blend mode.</strong> You get the contrast without the saturation pump that S-curves quietly add." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="pass-3" num="03" kicker="The Color Pass · ~25 min · The meat" title="Where the look gets built.">
+  <Goal>Build the color story through four stacked tools — Curves channels for structure, Selective Color for surgical hue shifts, Hue/Saturation for protection, Solid Color wash as a final unifier — without any single move doing all the work.</Goal>
+
+  <StepsList>
+    <li><strong>Curves channels — the split-tone skeleton.</strong> Layer → New Adjustment Layer → <code>Curves</code>. <strong>Blue channel:</strong> bottom-left up = teal shadows; top-right down = warm highlights. <strong>Red channel:</strong> bottom-left up = magenta shadows; top-right down = cyan highlights. <strong>Green channel:</strong> sparingly — top-right down = magenta highlights for sunset moods. Keep each move <code>5–15 points</code>; the eye exaggerates color shifts. Default <code>Normal</code> blend mode is correct here — Luminosity would strip exactly the change you're making.</li>
+    <li><strong>Selective Color — surgical hue zones.</strong> Layer → New Adjustment Layer → <code>Selective Color</code>. <strong>Cyans:</strong> <code>+Cyan, −Yellow</code> pushes toward true teal. <strong>Reds:</strong> <code>+Magenta</code> shifts reds toward coral (the dreamy lean). <strong>Whites:</strong> <code>−Yellow, +Magenta</code> tints whites cool/lavender. <strong>Blacks:</strong> <code>+Cyan, +Black</code> for deeper, cooler shadows. Start in <code>Relative</code> mode; switch to <code>Absolute</code> only if a zone refuses to budge.</li>
+    <li><strong>Hue/Saturation — the protection pass.</strong> New adjustment layer → <code>Hue/Saturation</code>. Target the <strong>Reds</strong> and <strong>Yellows</strong> ranges from the dropdown; pull saturation <code>−10 to −20</code> to protect skin from the over-pushed reds in step 1. Optionally <em>boost</em> the <strong>Cyans</strong> range to push the cyan-skin contrast harder. <em>Vibrance vs Hue/Sat:</em> reach for <strong>Vibrance</strong> when you want a global lift (it protects skin automatically); reach for <strong>Hue/Saturation with a specific range</strong> when you want a scalpel. Master saturation in Hue/Saturation is rarely the right tool.</li>
+    <li><strong>Solid Color wash — the final unifier (optional).</strong> Layer → New Fill Layer → <code>Solid Color</code>. Set blend mode to <code>Color</code> at 5–15% opacity, or <code>Soft Light</code> at 10–20% for a gentle warming/cooling. Use as a stitch when everything looks right but the image feels visually disconnected.</li>
+  </StepsList>
+
+  <Shot src={step5} alt="Curves panel with the Blue channel selected, showing teal shadow lift and warm highlight pull" />
+  <Shot src={step6} alt="Curves panel with the Red channel selected; both Blue and Red moves applied in one Curves layer" />
+  <Shot src={step7} alt="Selective Color panel with the Whites range selected, sliders cooling toward lavender" />
+  <Shot src={step8} alt="Selective Color panel with the Reds range selected, +Magenta pushed toward coral" />
+  <Shot src={step9} alt="Hue/Saturation panel with the Reds range targeted via eyedropper, saturation pulled down to protect skin" />
+  <Shot src={step10} alt="Solid Color fill layer at the top of the stack with low opacity, blend mode Color" />
+
+  <Why><strong>Color builds in passes.</strong> Curves channels paint with a roller; Selective Color paints with a brush; Hue/Sat protects what shouldn't move. Stacked, they read as a grade. One global slam — even a "vibrant action" preset — reads as a filter. The principle that runs through all four sub-passes: <strong>vibrant ≠ saturated.</strong></Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Magenta cast on everything", fixHtml: "<strong>Red channel pushed too hard with no Hue/Sat protection.</strong> Pull back the Curves move or add a stronger Hue/Sat reds layer at <code>−15 to −25</code>." },
+    { symptomHtml: "Crushed teal blacks — detail dropping out of shadow zones; skin in low light goes corpse-blue", fixHtml: "<strong>Blue channel bottom-left lifted past 20 points.</strong> Back off the lift. Aim for milky shadows, not blue ones." },
+    { symptomHtml: "\"Instagram filter\" look", fixHtml: "<strong>One strong global shift instead of layered passes.</strong> Diagnostic: if toggling off any single layer kills the whole grade, you're relying on one big move. Spread it across 3–4 smaller layers." },
+    { symptomHtml: "Reaching for master saturation when Vibrance was the right tool", fixHtml: "<strong>Master saturation in Hue/Saturation is rarely correct.</strong> Global punch → Vibrance. Targeted punch → Hue/Sat with a specific range. Never the master." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="pass-4" num="04" kicker="Atmosphere & Light · ~10 min" title="Make it feel lit, not graded.">
+  <Goal>Add directional color light cues — rim, bloom, leaks — that make the palette feel emitted from the scene rather than overlaid on it.</Goal>
+
+  <StepsList>
+    <li><strong>Rim lighting, matched to background.</strong> New layer above the subject, blend mode <code>Screen</code> or <code>Linear Dodge</code>. Soft brush in the dominant background color. Paint along the subject's edge facing that color source. Then a second rim from the opposite side in the complementary color.</li>
+    <li><strong>Bloom on highlights.</strong> Stamp visible (<kbd>Ctrl/Cmd + Shift + Alt + E</kbd>) → Filter → Blur → <code>Gaussian Blur 30–50px</code> → set blend to <code>Screen</code> at 30–50% opacity. <em>Stamp visible just makes a single flattened copy of everything you see, on a new layer above — your originals stay untouched.</em> The image's brightest points now glow.</li>
+    <li><strong>Light leaks (optional).</strong> Drop a colored gradient layer or a leak overlay PNG, set to <code>Screen</code> at 50–70%. One warm leak in a corner is usually plenty.</li>
+    <li><strong>Sparkle accents.</strong> Tiny soft brush dots on a Screen layer, in the highlight color. Restraint — 4–8 across the whole image, not 50.</li>
+  </StepsList>
+
+  <Shot src={step11} alt="Two rim-light layers, one each side of the subject, blend mode Screen, in complementary colors" />
+  <Shot src={step12} alt="Stamped + Gaussian-blurred bloom layer above the comp at Screen ~40% opacity" />
+  <Shot src={step13} alt="Sparkle accents on a Screen layer, soft round brush at small size" />
+
+  <Why><strong>A graded image and a lit image read very differently.</strong> Pass 03 sets the palette; this pass makes it feel like the colors are <em>coming from somewhere</em>. Rim, bloom, and sparkle are the difference between a colored image and a dreamy one.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Rim lights look like glowing outlines", fixHtml: "<strong>Drop the layer opacity</strong> to 30–50% and soften the brush. Rim should be <em>almost</em> imperceptible — glowing means wrong." },
+    { symptomHtml: "Sparkle accents read as dirty pixels or noise", fixHtml: "<strong>Too many.</strong> Cap at 4–8 across the whole image and place them on existing highlights, not in dark zones." }
+  ]} />
+</GuideStep>
+
+<GuideStep id="pass-5" num="05" kicker="Finishing · ~5 min · Out the door" title="The last 5% that ships.">
+  <Goal>Apply a final unifying pass via Camera Raw, add grain on the merged image (not per-layer), and export with banding-safe settings.</Goal>
+
+  <StepsList>
+    <li><strong>Camera Raw as smart filter.</strong> Stamp visible → right-click → <code>Convert to Smart Object</code> → Filter → <code>Camera Raw Filter</code>. Use the Color Grading wheels (shadows / midtones / highlights) for one final unifying pass. <em>Because it's applied to a Smart Object, the Camera Raw settings stay editable — double-click the filter name in the Layers panel to reopen and tweak.</em></li>
+    <li><strong>Vignette.</strong> Inside Camera Raw → Effects → Post-Crop Vignetting. Amount <code>−15 to −25</code>. Or skip Camera Raw and use a black radial gradient layer at <code>Multiply 30–50%</code>.</li>
+    <li><strong>Grain on the merged comp.</strong> Camera Raw → Effects → Grain. Amount <code>15–25</code>, Size <code>15–25</code>, Roughness <code>50</code>. Critical: grain on the <em>final composite</em>, not the layers individually. Unifies the whole image.</li>
+    <li><strong>Export discipline.</strong> File → Export → Export As. Format <code>JPG</code>, Quality <code>80–90</code>, Color space <code>sRGB</code>, <strong>Convert to sRGB checked</strong>. The detail readers miss most.</li>
+  </StepsList>
+
+  <Shot src={step14} alt="Camera Raw Filter Color Grading panel with shadow/midtone/highlight wheels positioned" />
+  <Shot src={step15} alt="Camera Raw Effects Grain settings dialed in (Amount, Size, Roughness)" />
+  <Shot src={step16} alt="Photoshop Export As dialog with JPG, Quality 80–90, and Convert to sRGB ticked" />
+
+  <Why><strong>Grain on the merged comp is what ties everything together.</strong> Per-layer grain reads as noise; one grain pass on the final composite makes the eye stop seeing layers and start seeing one image. The Camera Raw color-grading wheels do the same thing for color — one final unifier across the whole stack.</Why>
+
+  <Mistakes items={[
+    { symptomHtml: "Banding showed up in the export — visible stripes in skies or smooth gradients", fixHtml: "<strong>Add a micro-noise layer before flattening.</strong> New Layer → fill 50% gray → blend mode <code>Soft Light</code> → Filter → Noise → Add Noise at 1–2%. The noise breaks up the banded edges and disappears into the grain you added in step 3." },
+    { symptomHtml: "Grain looks chunky or pixelated on phones", fixHtml: "<strong>Drop Size to ~15</strong> and bump Amount slightly. Big grain reads as digital noise; fine grain reads as film." }
+  ]} />
+</GuideStep>

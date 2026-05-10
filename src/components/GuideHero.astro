@@ -17,7 +17,7 @@ const { eyebrow, titleHtml, lede, meta } = Astro.props;
 <header class="hero">
   <div class="eyebrow">{eyebrow}</div>
   <h1 set:html={titleHtml}></h1>
-  {lede.map((p) => <p class="lede">{p}</p>)}
+  {lede.map((p) => <p class="lede" set:html={p}></p>)}
   <div class="meta-row">
     <span>Difficulty<strong>{meta.difficulty}</strong></span>
     <span>Time<strong>{meta.time}</strong></span>
